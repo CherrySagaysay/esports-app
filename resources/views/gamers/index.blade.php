@@ -26,9 +26,19 @@
                     </h1>
                 </div>
 
-                <div
-                    class="rounded-xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300">
-                    Gamer Records
+                <div class="flex items-center gap-3">
+                    <div
+                        class="rounded-xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-300">
+                        Gamer Records
+                    </div>
+
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="rounded-xl bg-red-500 px-4 py-2 text-sm font-medium text-white hover:bg-red-600">
+                            Logout
+                        </button>
+                    </form>
                 </div>
             </div>
         </header>
@@ -220,10 +230,10 @@
                     <!-- Submit -->
                     <div class="border-t border-slate-800 pt-6">
                         <button type="submit"
-                            class="rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900">
+                            onclick="this.disabled = true; this.innerText = 'Saving...'; this.form.submit();"
+                            class="rounded-xl bg-cyan-400 px-6 py-3 font-semibold text-slate-950 transition hover:bg-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50">
                             Save Gamer
                         </button>
-
                     </div>
 
                 </form>
@@ -240,7 +250,7 @@
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full min-w-[900px] text-left text-sm">
+                    <table class="w-full min-w-990px text-left text-sm">
 
                         <thead class="bg-slate-800/70 text-xs uppercase tracking-wider text-slate-400">
                             <tr>
