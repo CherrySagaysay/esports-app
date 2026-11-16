@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -20,7 +21,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
-            'password_confirmation' => 'required_with:password|same:password'
+            'password_confirmation' => 'required|same:password'
         ]);
 
         User::create([
@@ -66,7 +67,7 @@ class AuthController extends Controller
             'password' => $request->password,
         ];
 
-        if (auth()->attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
             RateLimiter::clear($key);
 
             $request->session()->regenerate();
@@ -84,7 +85,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        auth()->logout();
+        auth()->guard()->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
