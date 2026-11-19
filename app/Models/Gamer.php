@@ -22,12 +22,12 @@ class Gamer extends Model
 
     public function achievements(): HasMany
     {
-        return $this->hasMany(Achievement::class);
+        return $this->hasMany(Achievement::class);  //one gamer has many achievements
     }
 
     public function games(): BelongsToMany
     {
-        return $this->belongsToMany(Game::class);
+        return $this->belongsToMany(Game::class); //one gamer belongs to many games
     }
 
 }

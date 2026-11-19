@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Achievement extends Model
 {
     protected $fillable = [
-        'gamer_id',
+        'gamer_id',  //fk sa gamer 
         'title',
     ];
 
